@@ -1,0 +1,28 @@
+ <div class="row">
+    <div class="col-md-12">
+        <h2>Employee List</h2>
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <table *ngIf="finalList.length > 0" class="table table-striped">
+            <thead>
+              <tr >
+                <th scope="col" style="font-weight:bold">#</th>
+                <th scope="col" style="font-weight:bold">Employee Name</th>
+                <th scope="col" style="font-weight:bold">Employee Age</th>
+                <th scope="col" style="font-weight:bold">Employee Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of finalList let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{row.employee_name}}</td>
+                <td>{{row.employee_age}}</td>
+                <td>{{row.employee_salary}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <p *ngIf="finalList.length == 0" class="alert alert-danger p-0">Data not found please refresh</p>
+    </div>
+ </div>

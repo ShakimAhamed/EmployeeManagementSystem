@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+                <h2 class="text-center mt-5">Log In</h2>
+                 
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form5Example1" >Name</label>
+                    <input type="text" id="form5Example1" formControlName="UserName" class="form-control" />
+                  </div>
+                  <p class="alert alert-danger p-0" *ngIf="loginForm.controls['UserName'].hasError('minlength')">
+                    Your username should be minimum 2 characters.
+                  </p>
+                 
+                  <div class="form-outline mb-4">
+                      <label class="form-label" for="form5Example2">Password</label>
+                    <input type="password" id="form5Example2" formControlName="UserPassword" class="form-control" />
+                  </div>
+                  <p class="alert alert-danger p-0" *ngIf="loginForm.controls['UserPassword'].hasError('minlength')">
+                    Your password should be minimum 4 characters.
+                  </p>
+                
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="(!loginForm.valid)">Log In</button>
+ 
+              </form>
+        </div>
+    </div>
+</div>

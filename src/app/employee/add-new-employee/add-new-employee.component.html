@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2>Add New Employee</h2>
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <div id="stepper1" class="bs-stepper">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Besic Information</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Skill Information</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Preview</span>
+                </button>
+              </div>
+            </div>
+            <div class="bs-stepper-content">
+                <form [formGroup]="besicInfoForm" (ngSubmit)="onSubmit()">
+                    <div id="test-l-1" class="content">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" 
+                        formControlName="firstName" id="firstName" />
+                        <div class="alert alert-danger p-0 mb-1" 
+                        *ngIf="besicInfoForm.controls['firstName'].touched && !besicInfoForm.controls['firstName'].valid">
+                            First name required
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" 
+                        formControlName="lastName" id="lastName"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" [max]="maxDate" class="form-control" 
+                        formControlName="dob" id="dob"  />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Phone</label>
+                        <input type="text" class="form-control" 
+                        formControlName="mobile" id="mobile"  />
+                        <div class="alert alert-danger p-0 mb-1" 
+                        *ngIf="besicInfoForm.controls['mobile'].touched && !besicInfoForm.controls['mobile'].valid">
+                            Enter Valid Mobile Number
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label> 
+                        <select class="form-control" name="" formControlName="gender" id="gender">
+                            <option value="">Select</option>
+                            <option value="1">Male</option>
+                            <option value="2">Femele</option>
+                        </select>
+                        <div class="alert alert-danger p-0 mb-1" 
+                        *ngIf="besicInfoForm.controls['gender'].touched && !besicInfoForm.controls['gender'].valid">
+                            Please Select Gender
+                        </div> 
+                    </div>
+                    <button (click)="next()" class="btn btn-primary">Next</button>
+                    </div> 
+                    <div id="test-l-2" class="content">
+                    <div class="form-group">
+                      <label for="skillName">Skill Name</label>
+                      <input type="text" class="form-control" id="skillName" formControlName="skillName" />
+                      <div class="alert alert-danger p-0 mb-1" 
+                      *ngIf="besicInfoForm.controls['skillName'].touched && !besicInfoForm.controls['skillName'].valid">
+                          Enter Skill Name
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="experience">Experience</label>
+                      <input type="text" class="form-control" id="experience" formControlName="experience" />
+                      <div class="alert alert-danger p-0 mb-1" 
+                        *ngIf="besicInfoForm.controls['experience'].touched && !besicInfoForm.controls['experience'].valid">
+                            Enter Experience
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="skillLevel">Skill Level</label> 
+                      <select class="form-control" name="" formControlName="skillLevel" id="skillLevel">
+                          <option value="">Select</option>
+                          <option value="1">Beginner</option>
+                          <option value="2">Intermediate</option>
+                          <option value="3">Advanced</option>
+                      </select>
+                      <div class="alert alert-danger p-0 mb-1" 
+                      *ngIf="besicInfoForm.controls['skillLevel'].touched && !besicInfoForm.controls['skillLevel'].valid">
+                          Please Select Skill Level
+                      </div> 
+                  </div>
+                    <button (click)="prev()" class="btn btn-primary">Prev</button>
+                    <button (click)="SaveNext()" class="btn btn-primary">Save & Preview</button>
+                    </div>
+                    <div id="test-l-3" class="content text-center">
+                      <div class="form-group text-left">
+                        <h4>Besic Information & Skill</h4>
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let obj of employeeDetails$ | async">
+                            Name:<b> {{obj.firstName}} {{obj.lastName}}</b> 
+                            <br> DOB: <b>{{obj.dob}}</b>
+                            <br> Mobile: <b>{{obj.mobile}}</b>
+                            <br> Gender: <b>{{FilterGender(obj.gender)}}</b>
+                            <hr>
+                            Skill Name: <b>{{obj.skillName}}</b>
+                            <br> Experience: <b>{{obj.experience}}</b>
+                            <br> Experience Level: <b>{{FilterSkillLevel(obj.skillLevel)}}</b>
+
+                          </li>
+                  
+                        </ul>
+                      </div>
+                    <button (click)="prev()" class="btn btn-primary">Prev</button>
+
+                    <!-- <button type="submit" class="btn btn-primary mt-5">Submit</button> -->
+                    </div>
+                </form>
+            </div>
+          </div>
+          
+    </div>
+    
+</div>
